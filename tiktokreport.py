@@ -68,21 +68,7 @@ def main():
 #      default=df["name"].unique()
 #  )
   #
-  #customer_type = st.sidebar.multiselect(
-  #    "Select the Customer Type:",
-  #    options=df["Customer_type"].unique(),
-  #    default=df["Customer_type"].unique(),
-  #)
-  #
-  #gender = st.sidebar.multiselect(
-  #    "Select the Gender:",
-  #    options=df["Gender"].unique(),
-  #    default=df["Gender"].unique()
-  #)
-  #
-  #df_selection = df.query(
-  #    "City == @city & Customer_type ==@customer_type & Gender == @gender"
-  #)
+
 
   # ---- MAINPAGE ----
   st.title(":bar_chart: Tiktok Hashtag Report")
@@ -244,123 +230,9 @@ def main():
   right_column2.plotly_chart(fig_product_hashtag, use_container_width=True)
   
   remove_files()
-#
-#  df_lang = df[["lang"]]
-#  df_lang = df_lang[df_lang['lang']!='und']
-#  df_lang = df_lang.groupby(['lang']).size().to_frame().sort_values([0], ascending = False).head(5).reset_index()
-#  df_lang.columns = ['lang', 'count']
-#
-#  fig_lang = px.pie(df_lang,
-#                      values="count",
-#                      names="lang",
-#                      title="<b>Language Used </b>",)
-#  fig_lang.update_layout(legend=dict(
-#      yanchor="top",
-#      y=0.99,
-#      xanchor="left",
-#      x=0.01
-#  ))
-#
-#
-#  #Most mentioned Screen name
-#  screen_name_data = df[["mentions_screen_name"]]
-#  screen_name_data = screen_name_data.groupby(['mentions_screen_name']).size().to_frame().sort_values([0], ascending = False).head(5).reset_index()
-#  screen_name_data.columns = ['mentions_screen_name', 'count']
-#
-#
-#  screen_name_mentioed = (
-#          screen_name_data.groupby(by=["mentions_screen_name"]).sum()[["count"]].sort_values(by="count")
-#  )
-#  fig_screen_name_mentioned = px.bar(
-#      screen_name_mentioed,
-#      x="count",
-#      y=screen_name_mentioed.index,
-#      orientation="h",
-#
-#      title="<b>Most Mentioned Screen Names </b>",
-#      color_discrete_sequence=["#e3d88d"] * len(screen_name_mentioed),
-#      template="plotly_white",
-#  )
-#  fig_screen_name_mentioned.update_layout(
-#      plot_bgcolor="rgba(0,0,0,0)",
-#      xaxis=(dict(showgrid=False))
-#  )
-#
-#  left_column3, right_column3 = st.columns(2)
-#  left_column3.plotly_chart(fig_lang, use_container_width=True)
-#  right_column3.plotly_chart(fig_screen_name_mentioned, use_container_width=True)
-#
-#  location_data = df[['location']]
-#  location_data = location_data.dropna()
-#
-#  def get_cities(list_1):
-#
-#    list_1 = list_1.split(",")
-#    if len(list_1)==1:
-#      return list_1[0]
-#    elif len(list_1)>1:
-#      return list_1[0]
-#    else:
-#      return ""
-#
-#  def get_country(list_1):
-#    list_1 = list_1.split(",")
-#    if len(list_1)>1:
-#      return list_1[1]
-#    else:
-#      return ""
-#
-#  location_data['cities'] = location_data['location'].apply(get_cities)
-#  location_data['country'] = location_data['location'].apply(get_country)
-#
-#  cities = location_data.groupby(['cities']).size().to_frame().sort_values([0], ascending = False).head(5).reset_index()
-#  cities.columns = ['cities', 'count']
-#
-#  cities_mentioned = (
-#          cities.groupby(by=["cities"]).sum()[["count"]].sort_values(by="count")
-#  )
-#  fig_cities_mentioned = px.bar(
-#      cities_mentioned,
-#      x="count",
-#      y=cities_mentioned.index,
-#      orientation="h",
-#
-#      title="<b>Most Frequent Cities mentioned </b>",
-#      color_discrete_sequence=["#8de3d8"] * len(cities_mentioned),
-#      template="plotly_white",
-#  )
-#  fig_cities_mentioned.update_layout(
-#      plot_bgcolor="rgba(0,0,0,0)",
-#      xaxis=(dict(showgrid=False))
-#  )
-#  # Create some sample text
-#  text = 'Fun, fun, awesome, awesome, tubular, astounding, superb, great, amazing, amazing, amazing, amazing'
-#
-#  # Create and generate a word cloud image:
-#  wordcloud = WordCloud(background_color='white',max_font_size = 50,collocations=False).generate(text)
-#
-#  # Display the generated image:
-#  plt.figure(figsize = (20,8))
-#  plt.title("World Cloud")
-#  plt.imshow(wordcloud, interpolation='bilinear')
-#  plt.axis("off")
-#
-#
-#  left_column4, right_column4 = st.columns(2)
-#  left_column4.plotly_chart(fig_cities_mentioned, use_container_width=True)
-#  right_column4.pyplot(plt,use_container_width=True)
-#
-#  # ---- HIDE STREAMLIT STYLE ----
-#  hide_st_style = """
-#              <style>
-#              #MainMenu {visibility: hidden;}
-#              footer {visibility: hidden;}
-#              header {visibility: hidden;}
-#              </style>
-#              """
-#  #st.markdown(hide_st_style, unsafe_allow_html=True)
-#
-#
+
+
+
 st.sidebar.header("Please Filter Here:")
 uploaded_file = st.sidebar.file_uploader("Upload CSV file",type=["csv"])
 button = st.sidebar.button("Generate Hashtags")
