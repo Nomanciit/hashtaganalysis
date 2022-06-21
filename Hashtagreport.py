@@ -36,6 +36,18 @@ def main():
                             
     except OSError as error:
       print(error)
+      
+  def remove_files():
+    try:
+      directory = os.getcwd()
+      csv_files = os.listdir(directory)
+      files_ = []
+      for item_csv in csv_files:
+        if item_csv.endswith(".csv"):
+            os.remove(item_csv)
+                            
+    except OSError as error:
+      print(error)
 
   # emojis: https://www.webfx.com/tools/emoji-cheat-sheet/
 
@@ -356,6 +368,7 @@ def main():
               </style>
               """
   #st.markdown(hide_st_style, unsafe_allow_html=True)
+  remove_files()
   
  
 st.sidebar.header("Please Filter Here:")
@@ -373,6 +386,9 @@ except Exception as e:
 try:
     if button:
         main()
+        
 except Exception as e:
     st.write("Please upload file using Side bar",e)
+
+
 
